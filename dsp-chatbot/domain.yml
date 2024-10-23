@@ -1,0 +1,37 @@
+version: "3.1"
+
+session_config:
+  session_expiration_time: 60  # value in minutes
+  carry_over_slots_to_new_session: true
+
+intents:
+  - nlu_fallback
+  - greet
+  - apply_role
+  - admin_is
+  - other-role
+  - apply_other_role
+  - apply_admin
+  
+actions:
+  - utter_apply_other_role
+  - utter_other-role
+  - utter_push_order
+  - utter_others_solution
+#  - action_start_specific_story
+  - action_default_fallback
+  - action_hi_apply_role
+  - action_apply_role
+  - action_admin_is
+  - action_apply_admin
+  - action_first_step_in_story
+
+responses:
+  utter_push_order:
+    - text: "<a href = \"https://dsp.schneider-electric.cn/web/rr/return/feedback\" target = \"_blank\"><物流退返></a>，点击后可跳转至物流退返模块"
+  utter_others_solution:
+    - text: "抱歉，我们暂时无法支持此类问题的答疑，如有需要可联系人工获取支持。"
+  utter_other-role:
+    - text: "点击后方链接可进入管理角色页面查看全部业务角色说明，<a href = \"https://dsp.schneider-electric.cn/web/user/customer/role?roleType=0\" target = \"_blank\"><我的角色-管理角色></a>"
+  utter_apply_other_role:
+    - text: "<a href = \"https://dsp.schneider-electric.cn/web/user/customer/role?roleType=0\" target = \"_blank\"><我的角色-管理角色></a>"

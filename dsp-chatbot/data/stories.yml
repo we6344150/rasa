@@ -1,0 +1,33 @@
+version: "3.1"
+
+stories:
+
+- story: greet
+  steps:
+  - intent: greet
+  - action: action_hi_apply_role
+  - intent: apply_role
+  - action: action_apply_role
+  - intent: admin_is
+  - action: action_admin_is
+  - intent: other-role
+  - action: utter_other-role
+  - intent: apply_other_role
+  - action: utter_apply_other_role
+  - intent: apply_admin
+  - action: action_apply_admin
+
+- story: fallback_story
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_fallback
+
+- story: specific_story_triggered_by_fallback
+  steps:
+  - action: action_first_step_in_story
+  - action: utter_others_solution
+
+- story: others
+  steps:
+  - intent: others_solution
+  - action: utter_others_solution

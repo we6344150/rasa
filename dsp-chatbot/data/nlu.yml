@@ -1,0 +1,37 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: | 
+    - 你好
+    - 你好啊
+    - hi
+    - 晚上好
+    - hello
+
+- intent: apply_role
+  examples: | 
+    - 申请角色
+    - 申请角色权限
+    - 申请
+    - 角色
+- intent: admin_is
+  examples: | 
+    - 什么是管理员
+    - 管理员是什么
+    - 管理员是什么角色
+- intent: other-role
+  examples: | 
+    - 其他业务角色有哪些
+    - 其他业务角色
+    - 其他角色
+    - 其他业务角色是什么
+- intent: apply_other_role
+  examples: | 
+    - 申请其他业务角色
+    - 申请其他业务
+    - 申请其他角色
+- intent: apply_admin 
+  examples: | 
+    - 申请管理员
+    - 申请管理员权限

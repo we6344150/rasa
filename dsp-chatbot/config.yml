@@ -1,0 +1,56 @@
+# The config recipe.
+# https://rasa.com/docs/rasa/model-configuration/
+recipe: default.v1
+
+# The assistant project unique identifier
+# This default value must be replaced with a unique assistant name within your deployment
+assistant_id: 20240715-162750-fixed-thrush
+
+# Configuration for Rasa NLU.
+# https://rasa.com/docs/rasa/nlu/components/
+
+# language: zh
+
+# pipeline:
+# - name: "JiebaTokenizer"  # 添加Jieba分词器，需要先安装`rasa[jieba]`
+# - name: "CountVectorsFeaturizer"  # 特征提取器，适用于基于词袋模型的特征表示
+# - name: "DIETClassifier"  # 强大的意图分类器，同时也支持实体识别
+#   epochs: 100  # 可根据实际情况调整
+#   constrain_similarities: true
+# - name: FallbackClassifier
+#   threshold: 0.8
+# policies:
+# - name: "MemoizationPolicy"
+# - name: "TEDPolicy"
+#   max_history: 5    # 考虑的对话轮数
+#   epochs: 100
+#   batch_size: 32
+#   embedding_dimension: 256
+#   lr_multiplier: 1.0
+# - name: "RulePolicy"
+
+language: zh
+
+pipeline:
+  - name: "SpacyNLP"
+    model: "zh_core_web_sm"
+  - name: "SpacyTokenizer"
+  - name: "SpacyFeaturizer"
+  - name: "RegexFeaturizer"
+  - name: "LexicalSyntacticFeaturizer"
+  - name: "CountVectorsFeaturizer"
+  - name: "CountVectorsFeaturizer"
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: "DIETClassifier"
+  - name: "EntitySynonymMapper"
+  - name: FallbackClassifier
+    threshold: 0.7
+policies:
+  - name: "MemoizationPolicy"
+  - name: "TEDPolicy"
+    epochs: 100
+  - name: "RulePolicy"
+
+
